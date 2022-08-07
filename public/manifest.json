@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "version": "1.0",
-  "name": "Pop-up Extension",
-  "description": "A demo pop-up experience",
+  "name": "Popup Extension",
+  "description": "A demo popup experience",
   "action": {
     "default_icon": "icons/icon-48.png",
     "default_popup": "index.html"
