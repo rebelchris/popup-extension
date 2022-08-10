@@ -9,5 +9,8 @@
   },
   "icons": {
     "48": "icons/icon-48.png"
-  }
+  },
+  "permissions": [
+    "notifications"
+  ]
 }
