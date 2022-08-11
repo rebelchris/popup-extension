@@ -2,7 +2,7 @@ export function App() {
 
     const createNotification = () => {
         chrome.alarms.create('motivation_alarm', {
-            periodInMinutes: 1,
+            periodInMinutes: 60,
         });
         window.close();
     }
