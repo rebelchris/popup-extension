@@ -7,10 +7,14 @@
     "default_icon": "icons/icon-48.png",
     "default_popup": "index.html"
   },
+  "background": {
+    "service_worker": "background.js"
+  },
   "icons": {
     "48": "icons/icon-48.png"
   },
   "permissions": [
+    "alarms",
     "notifications"
   ]
 }
