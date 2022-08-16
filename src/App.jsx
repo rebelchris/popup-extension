@@ -26,10 +26,31 @@ export function App() {
     setColor(storedColor.color);
   });
 
+  const changeColor = () => {
+    chrome.storage.sync.get('color', ({ color }) => {
+      document.body.style.backgroundColor = color;
+    });
+  }
+
+  const colorize = async () => {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: changeColor
+    });
+  }
+
   return (
     <div
       className={`flex flex-col items-center justify-center w-screen h-auto ${colorMatch[color]} p-4`}
     >
+      <button
+          className='px-4 py-2 text-2xl font-bold text-white bg-pink-500 rounded hover:bg-pink-700'
+          onClick={colorize}
+      >
+        Colorize 💖
+      </button>
+      <br />
       <button
         className='px-4 py-2 text-2xl font-bold text-white bg-blue-500 rounded hover:bg-blue-700'
         onClick={createNotification}

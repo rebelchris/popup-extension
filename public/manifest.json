@@ -13,7 +13,7 @@
   "icons": {
     "48": "icons/icon-48.png"
   },
-  "permissions": ["alarms", "notifications", "storage"],
+  "permissions": ["alarms", "notifications", "storage", "activeTab", "scripting"],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": false
