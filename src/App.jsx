@@ -27,43 +27,33 @@ export function App() {
         setColor(storedColor.color);
     });
 
-    const changeColor = () => {
-        chrome.storage.sync.get('color', ({color}) => {
-            document.body.style.backgroundColor = color;
-        });
+
+    const spoofImages = () => {
+        const images = document.getElementsByTagName('img');
+        for(const image of images) {
+            image.removeAttribute('srcset');
+            image.src = 'http://placekitten.com/300'
+        }
     }
 
-    const colorize = async () => {
+    const imageSpoof = async () => {
         const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
         chrome.scripting.executeScript({
             target: {tabId: tab.id},
-            function: changeColor
+            function: spoofImages
         });
-    }
-
-    const backgroundRequest = () => {
-        chrome.runtime.sendMessage({color}, (response) => {
-            setMessage(response.msg);
-        })
     }
 
     return (
         <div
             className={`flex flex-col items-center justify-center w-screen h-auto ${colorMatch[color]} p-4`}
         >
-            <button
-                className='px-4 py-2 text-2xl font-bold text-white bg-pink-500 rounded hover:bg-pink-700'
-                onClick={backgroundRequest}
-            >
-                Background request
-            </button>
-            <br/>
             {message && (<><p className='text-white'>{message}</p><br/></>)}
             <button
                 className='px-4 py-2 text-2xl font-bold text-white bg-pink-500 rounded hover:bg-pink-700'
-                onClick={colorize}
+                onClick={imageSpoof}
             >
-                Colorize 💖
+                Change images
             </button>
             <br/>
             <button
